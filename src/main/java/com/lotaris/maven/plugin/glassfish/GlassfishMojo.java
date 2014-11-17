@@ -43,6 +43,7 @@ public abstract class GlassfishMojo extends AbstractMojo {
 	 * @throws MojoExecutionException
 	 * @throws MojoFailureException 
 	 */
+	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		postConfig();
 		getMacro().execute(new CommandExecutor(configuration));
@@ -114,7 +115,7 @@ public abstract class GlassfishMojo extends AbstractMojo {
 	
 	/**
 	 * Retrieve the macro to run for the Maven Goal
-	 * @return 
+	 * @return The macro
 	 */
 	protected abstract AbstractMacro getMacro();
 	

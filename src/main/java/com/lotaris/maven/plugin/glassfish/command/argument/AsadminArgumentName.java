@@ -18,6 +18,7 @@ public enum AsadminArgumentName implements IArgumentName {
 	 */
 	HOST("host") {
 		@Override
+		@SuppressWarnings("unchecked")
 		public Argument create(Configuration configuration) {
 			return create().setValue(configuration.getDomain().getHost());
 		}
@@ -33,6 +34,7 @@ public enum AsadminArgumentName implements IArgumentName {
 	 */
 	PASSWORDFILE("passwordfile") {
 		@Override
+		@SuppressWarnings("unchecked")
 		public Argument create(Configuration configuration) {
 			return super.create().setValue(configuration.getGlassfish().getPasswordFile());
 		}
@@ -43,6 +45,7 @@ public enum AsadminArgumentName implements IArgumentName {
 	 */
 	PORT("port") {
 		@Override
+		@SuppressWarnings("unchecked")
 		public Argument create(Configuration configuration) {
 			return create().setValue(configuration.getDomain().getAdminPort());
 		}
@@ -53,6 +56,7 @@ public enum AsadminArgumentName implements IArgumentName {
 	 */
 	TERSE("terse", true) {
 		@Override
+		@SuppressWarnings("unchecked")
 		public Argument create(Configuration configuration) {
 			return super.create().setValue(configuration.getGlassfish().isTerse());
 		}
@@ -63,6 +67,7 @@ public enum AsadminArgumentName implements IArgumentName {
 	 */
 	USER("user") {
 		@Override
+		@SuppressWarnings("unchecked")
 		public Argument create(Configuration configuration) {
 			return super.create().setValue(configuration.getGlassfish().getUser());
 		}

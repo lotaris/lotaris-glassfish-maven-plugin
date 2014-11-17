@@ -21,6 +21,7 @@ public class CommandArgumentFactory {
 	 * @param value The argument value
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	public static Argument<CommandArgumentName> buildStringArgument(CommandArgumentName name, String value) {
 		if (value != null && !value.isEmpty()) {
 			return create(name).setValue(value);
@@ -37,6 +38,7 @@ public class CommandArgumentFactory {
 	 * @param value The argument value
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	public static Argument<CommandArgumentName> buildIntegerArgument(CommandArgumentName name, Integer value) {
 		if (value != null) {
 			return create(name).setValue(value);
@@ -53,6 +55,7 @@ public class CommandArgumentFactory {
 	 * @param value The argument value
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	public static Argument<CommandArgumentName> buildBooleanArgument(CommandArgumentName name, Boolean value) {
 		if (value != null) {
 			return create(name).setValue(value);
@@ -108,6 +111,7 @@ public class CommandArgumentFactory {
 	 * @param configuration The configuration to retrive the domain properties
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	public static Argument<CommandArgumentName> buildDomainPropertiesArgument(Configuration configuration) {
 		// Populate the domain properties
 		Set<Property> domainProperties = new HashSet<>();
@@ -140,6 +144,7 @@ public class CommandArgumentFactory {
 	 * @param jvmOptions The JVM options to set to the argument
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	public static Argument<CommandArgumentName> buildJvmOptionsArgument(Set<String> jvmOptions) {
 		return create(JVM_OPTIONS).setStringsValue(jvmOptions);
 	}
@@ -167,8 +172,7 @@ public class CommandArgumentFactory {
 	/**
 	 * Build the standard set attribute
 	 * 
-	 * @param key The key
-	 * @param value The value
+	 * @param property The property
 	 * @return The argument
 	 */
 	public static Argument<CommandArgumentName> buildSetAttributeArgument(Property property) {
@@ -222,6 +226,7 @@ public class CommandArgumentFactory {
 	 * @param properties The properties of the argument
 	 * @return The argument
 	 */
+	@SuppressWarnings("unchecked")
 	private static Argument<CommandArgumentName> buildPropertiesArgument(CommandArgumentName name, Set<Property> properties) {
 		if (properties != null && !properties.isEmpty()) {
 			return create(name).setPropertiesValue(properties);

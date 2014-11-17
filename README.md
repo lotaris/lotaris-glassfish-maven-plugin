@@ -4,22 +4,13 @@
 
 ## Usage
 
-1. Clone the repository.
-
-2. Run the following command
-
-```bash
-cd <projectFolder>
-mvn clean install
-```
-
-3. Put the following dependency in your pom.xml
+1. Put the following dependency in your pom.xml
 
 ```xml
 <plugin>
 	<groupId>com.lotaris.maven.plugins</groupId>
 	<artifactId>lotaris-glassfish-maven-plugin</artifactId>
-	<version>1.1.0</version>
+	<version>1.0.0</version>
 	<executions>
 		<execution>
 			<id>glassfish</id>
