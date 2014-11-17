@@ -4,18 +4,16 @@
 
 ## Usage
 
-1. Clone the [ROX Java Client](https://github.com/lotaris/lotaris-glassfish-maven-plugin) and follow the instructions.
+1. Clone the repository.
 
-2. Clone the repository.
-
-3. Run the following command
+2. Run the following command
 
 ```bash
 cd <projectFolder>
 mvn clean install
 ```
 
-4. Put the following dependency in your pom.xml
+3. Put the following dependency in your pom.xml
 
 ```xml
 <plugin>
