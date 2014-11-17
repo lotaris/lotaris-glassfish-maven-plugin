@@ -70,5 +70,5 @@ Please add a changelog entry with your name for new features and bug fixes.
 
 ## License
 
-**rox-client-junit** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+**lotaris-glassfish-maven-plugin** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 See [LICENSE.txt](LICENSE.txt) for the full text.
