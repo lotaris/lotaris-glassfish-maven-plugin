@@ -6,7 +6,6 @@
 		<goals>
 			<goal>clean</goal>
 			<goal>install</goal>
-			<goal>-PlotarisBuildSource</goal>
 			<goal>-e</goal>
 		</goals>
 	</action>
@@ -17,7 +16,6 @@
 		<goals>
 			<goal>clean</goal>
 			<goal>deploy</goal>
-			<goal>-PlotarisBuildSource</goal>
 			<goal>-e</goal>
 		</goals>
 	</action>
