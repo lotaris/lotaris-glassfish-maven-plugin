@@ -130,7 +130,7 @@ public class Configuration {
 	}
 	
 	public boolean isLocalDomain() {
-		return domainAddress.isLoopbackAddress();
+		return domainAddress.isAnyLocalAddress();
 	}
 	
 	public Log getLog() {
