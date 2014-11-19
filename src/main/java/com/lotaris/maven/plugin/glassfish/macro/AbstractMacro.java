@@ -2,8 +2,6 @@ package com.lotaris.maven.plugin.glassfish.macro;
 
 import com.lotaris.maven.plugin.glassfish.command.CommandExecutor;
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -23,13 +21,7 @@ public abstract class AbstractMacro {
 	/**
 	 * The list of macro commands to run
 	 */
-	private List<IMacroCommand> commands = new ArrayList<>();
-	
-	/**
-	 * Keep the domain address to be able to know if the domain
-	 * is a local domain or a remote domain
-	 */
-	private InetAddress domainAddress;
+	private final List<IMacroCommand> commands = new ArrayList<>();
 	
 	/**
 	 * Constructor
@@ -38,13 +30,6 @@ public abstract class AbstractMacro {
 	 */
 	public AbstractMacro(Configuration configuration) {
 		this.configuration = configuration;
-		
-		try {
-			domainAddress = InetAddress.getByName(configuration.getDomain().getHost());
-		}
-		catch (UnknownHostException uhe) {
-			throw new IllegalArgumentException(uhe);
-		}
 	}
 
 	/**
@@ -75,6 +60,6 @@ public abstract class AbstractMacro {
 	 * @return True if the domain is a local domain
 	 */
 	protected boolean isLocalDomain() {
-		return domainAddress.isLoopbackAddress();
+		return configuration.isLocalDomain();
 	}
 }

@@ -1,5 +1,7 @@
 package com.lotaris.maven.plugin.glassfish.model;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import org.apache.maven.plugin.logging.Log;
 
 /**
@@ -34,6 +36,12 @@ public class Configuration {
 	private UndeployConfiguration undeployConfiguration;
 	
 	/**
+	 * Keep the domain address to be able to know if the domain
+	 * is a local domain or a remote domain
+	 */
+	private InetAddress domainAddress;	
+	
+	/**
 	 * Logger
 	 */
 	private Log log;
@@ -49,6 +57,13 @@ public class Configuration {
 		this.glassfish = glassfish;
 		this.domain = domain;
 		this.log = log;
+
+		try {
+			domainAddress = InetAddress.getByName(domain.getHost());
+		}
+		catch (UnknownHostException uhe) {
+			throw new IllegalArgumentException(uhe);
+		}
 	}
 
 	/**
@@ -112,6 +127,10 @@ public class Configuration {
 
 	public UndeployConfiguration getUndeployConfiguration() {
 		return undeployConfiguration;
+	}
+	
+	public boolean isLocalDomain() {
+		return domainAddress.isLoopbackAddress();
 	}
 	
 	public Log getLog() {
