@@ -20,7 +20,7 @@ public class MacroCommand implements IMacroCommand {
 	/**
 	 * A description text that represent the macro command
 	 */
-	private String descriptionText;
+	private final String descriptionText;
 
 	/**
 	 * Constructor

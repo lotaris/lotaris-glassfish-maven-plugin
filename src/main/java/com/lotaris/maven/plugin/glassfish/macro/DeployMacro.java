@@ -18,14 +18,17 @@ public class DeployMacro extends AbstractMacro {
 	public DeployMacro(Configuration configuration) {
 		super(configuration);
 
-		// Check if the domain does not exist
-		if (!configuration.getDomain().exists()) {
-			registerCommand(new MacroMacroCommand(new CreateDomainMacro(configuration), "Creating domain."));
-		}
-		
-		// Check if the domain is not started
-		else if (!configuration.getDomain().isStarted()) {
-			registerCommand(new MacroMacroCommand(new StartDomainMacro(configuration), "Starting domain."));
+		// Take care of the domain operations if and only if the host is a local address
+		if (isLocalDomain()) {
+			// Check if the domain does not exist
+			if (!configuration.getDomain().exists()) {
+				registerCommand(new MacroMacroCommand(new CreateDomainMacro(configuration), "Creating domain."));
+			}
+
+			// Check if the domain is not started
+			else if (!configuration.getDomain().isStarted()) {
+				registerCommand(new MacroMacroCommand(new StartDomainMacro(configuration), "Starting domain."));
+			}
 		}
 		
 		registerCommand(new MacroCommand(buildDeployCommand(configuration), "Deploying application [" + configuration.getDeployConfiguration().getName() + "]."));

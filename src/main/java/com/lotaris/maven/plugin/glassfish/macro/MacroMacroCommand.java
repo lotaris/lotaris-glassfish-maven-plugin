@@ -14,12 +14,12 @@ public class MacroMacroCommand implements IMacroCommand {
 	/**
 	 * The macro to run as a command macro
 	 */
-	private AbstractMacro macro;
+	private final AbstractMacro macro;
 
 	/**
 	 * The descriptive text
 	 */
-	private String descriptionText;
+	private final String descriptionText;
 
 	/**
 	 * Constructor

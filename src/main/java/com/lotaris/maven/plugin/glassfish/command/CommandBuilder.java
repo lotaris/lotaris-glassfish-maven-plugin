@@ -23,17 +23,17 @@ public class CommandBuilder {
 	/**
 	 * The command name
 	 */
-	private CommandName name;
+	private final CommandName name;
 	
 	/**
 	 * The ASADMIN util arguments
 	 */
-	private List<String> asadminArguments;
+	private final List<String> asadminArguments;
 
 	/**
 	 * The command arguments
 	 */
-	private List<String> commandArguments;
+	private final List<String> commandArguments;
 	
 	/**
 	 * A friendly message to add in case of error
@@ -119,7 +119,7 @@ public class CommandBuilder {
 	 * @return The command elements
 	 */
 	public List<String> getCommandLine(String asadminPath) {
-		List<String> cmdLine = new ArrayList<String>();
+		List<String> cmdLine = new ArrayList<>();
 		
 		// The command line tool
 		cmdLine.add(asadminPath);

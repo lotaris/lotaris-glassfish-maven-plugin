@@ -20,15 +20,17 @@ public class RedeployMacro extends AbstractMacro {
 
 		// Check if the domain does not exist
 		if (!configuration.getDomain().exists()) {
-			registerCommand(new MacroMacroCommand(new CreateDomainMacro(configuration), "Creating domain."));
-		
+			if (isLocalDomain()) {
+				registerCommand(new MacroMacroCommand(new CreateDomainMacro(configuration), "Creating domain."));
+			}
+			
 			configuration.setDeployConfiguration(configuration.getRedeployConfiguration().getDeployConfiguration());
 			registerCommand(new MacroCommand(buildDeployCommand(configuration), "Deploy application [" + configuration.getRedeployConfiguration().getName() + "]."));
 		}
 		
 		else {
 			// Check if the domain is not started
-			if (!configuration.getDomain().isStarted()) {
+			if (isLocalDomain() && !configuration.getDomain().isStarted()) {
 				registerCommand(new MacroMacroCommand(new StartDomainMacro(configuration), "Starting domain."));
 			}
 

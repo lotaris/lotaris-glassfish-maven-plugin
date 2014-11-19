@@ -20,6 +20,10 @@ public class StartDomainMacro extends AbstractMacro {
 	public StartDomainMacro(Configuration configuration) {
 		super(configuration);
 
+		if (isLocalDomain()) {
+			throw new UnsupportedOperationException("Starting a domain on a remote host is not supported yet.");
+		}
+		
 		// Check if the domain exists
 		if (!configuration.getDomain().exists()) {
 			// Check if the domain can be created automatically

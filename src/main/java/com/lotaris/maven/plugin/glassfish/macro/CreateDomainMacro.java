@@ -21,6 +21,10 @@ public class CreateDomainMacro extends AbstractMacro {
 	public CreateDomainMacro(Configuration configuration) {
 		super(configuration);
 
+		if (isLocalDomain()) {
+			throw new UnsupportedOperationException("The creation of a domain on a remote host is not supported at the moment.");
+		}
+		
 		// Check if the domain exists
 		if (configuration.getDomain().exists()) {
 			// Check if we can reuse it

@@ -33,7 +33,7 @@ public class CommandExecutor {
 	/**
 	 * ASADMIN dirs
 	 */
-	private File binDir;
+	private final File binDir;
 	private File asadmin;
 		
 	/**

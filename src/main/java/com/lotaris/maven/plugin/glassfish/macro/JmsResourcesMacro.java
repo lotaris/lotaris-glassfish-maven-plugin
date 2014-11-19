@@ -61,17 +61,23 @@ public class JmsResourcesMacro extends AbstractMacro {
 			}
 		}
 		
-		// Create every connection factory
-		for (ConnectionFactory connectionFactory : configuration.getDomain().getConnectionFactories()) {
-			registerCommand(new MacroCommand(buildCreateJmsResourceCommand(configuration, connectionFactory), "Creation of the connection factory [" + connectionFactory.getJndiName() + "]."));
-		}
-		
-		// Create every JMS resource with its physical destination
-		for (JmsResource resource : configuration.getDomain().getJmsResources()) {
-			if (resource.isCreatePhysicalDestination()) {
-				registerCommand(new MacroCommand(buildCreateJmsDestination(configuration, resource), "Creation of the JMS physical destination [" + resource .getJndiName() + "]."));
+		if (configuration.getDomain() != null) {
+			// Create every connection factory
+			if (configuration.getDomain().getConnectionFactories() != null) {
+				for (ConnectionFactory connectionFactory : configuration.getDomain().getConnectionFactories()) {
+					registerCommand(new MacroCommand(buildCreateJmsResourceCommand(configuration, connectionFactory), "Creation of the connection factory [" + connectionFactory.getJndiName() + "]."));
+				}
 			}
-			registerCommand(new MacroCommand(buildCreateJmsResourceCommand(configuration, resource), "Creation of the JMS resource [" + resource.getJndiName() + "]."));
+		
+			// Create every JMS resource with its physical destination
+			if (configuration.getDomain().getJmsResources() != null) {
+				for (JmsResource resource : configuration.getDomain().getJmsResources()) {
+					if (resource.isCreatePhysicalDestination()) {
+						registerCommand(new MacroCommand(buildCreateJmsDestination(configuration, resource), "Creation of the JMS physical destination [" + resource .getJndiName() + "]."));
+					}
+					registerCommand(new MacroCommand(buildCreateJmsResourceCommand(configuration, resource), "Creation of the JMS resource [" + resource.getJndiName() + "]."));
+				}
+			}
 		}
 	}
 }

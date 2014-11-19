@@ -20,9 +20,11 @@ public class JdbcResourcesMacro extends AbstractMacro {
 	public JdbcResourcesMacro(Configuration configuration) {
 		super(configuration);
 
-		for (JdbcResource resource : configuration.getDomain().getJdbcResources()) {
-			registerCommand(new MacroCommand(buildCreatJdbcConnectionPool(configuration, resource), "Create JDBC connection pool [" + resource.getJndiName() + "]."));
-			registerCommand(new MacroCommand(buildCreateJdbcResource(configuration, resource), "Create JDBC resource [" + resource.getJndiName() + "]."));
+		if (configuration.getDomain() != null && configuration.getDomain().getJdbcResources() != null) {
+			for (JdbcResource resource : configuration.getDomain().getJdbcResources()) {
+				registerCommand(new MacroCommand(buildCreatJdbcConnectionPool(configuration, resource), "Create JDBC connection pool [" + resource.getJndiName() + "]."));
+				registerCommand(new MacroCommand(buildCreateJdbcResource(configuration, resource), "Create JDBC resource [" + resource.getJndiName() + "]."));
+			}
 		}
 	}
 }
