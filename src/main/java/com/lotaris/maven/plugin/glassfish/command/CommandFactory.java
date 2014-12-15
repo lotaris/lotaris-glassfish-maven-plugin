@@ -137,6 +137,18 @@ public class CommandFactory {
 			addArgument(buildStringArgument(JNDI_NAME, resource.getJndiName())).
 			setFriendlyErrorMessage("Unable to create the JDBC resource [" + resource.getJndiName() + "].");
 	}
+	
+	/**
+	 * Build the command to set the connection pool to the Glassfish JDBC timer resource (jdbc/__TimerPool) with the given JDBC connection pool.
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param resource The resource to create the command specifically for it
+	 * @return The command
+	 */
+	public static CommandBuilder buildSetTimerResourceConnectionPool(Configuration configuration, JdbcResource resource) {
+		Property property = new Property("domain.resources.jdbc-resource.jdbc/__TimerPool.pool-name", resource.getPoolId());
+		return buildSetCommand(configuration, property);
+	}
 
 	/**
 	 * Create the JMS Host creation command

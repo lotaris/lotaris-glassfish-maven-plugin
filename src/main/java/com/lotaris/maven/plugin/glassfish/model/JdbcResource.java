@@ -122,6 +122,9 @@ public class JdbcResource {
 	private Integer statementCacheSize;
 	
 	@Parameter
+	private Boolean timerPool;
+	
+	@Parameter
 	private String validationClassName;
 	
 	@Parameter
@@ -294,6 +297,14 @@ public class JdbcResource {
 		return validationClassName;
 	}
 
+	public Boolean getTimerPool() {
+		return timerPool;
+	}
+
+	public void setTimerPool(Boolean timerPool) {
+		this.timerPool = timerPool;
+	}
+	
 	public Boolean getWrapJdbcObjects() {
 		return wrapJdbcObjects;
 	}
