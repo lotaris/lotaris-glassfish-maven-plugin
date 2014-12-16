@@ -300,10 +300,6 @@ public class JdbcResource {
 	public Boolean getTimerPool() {
 		return timerPool;
 	}
-
-	public void setTimerPool(Boolean timerPool) {
-		this.timerPool = timerPool;
-	}
 	
 	public Boolean getWrapJdbcObjects() {
 		return wrapJdbcObjects;
@@ -374,6 +370,7 @@ public class JdbcResource {
 			+ "statementLeakTimeout=" + statementLeakTimeout + ", "
 			+ "statementTimeout=" + statementTimeout + ", "
 			+ "steadyPoolSize=" + steadyPoolSize + ", "
+			+ "timerPool=" + timerPool + ", "
 			+ "type=" + type + ", "
 			+ "url=" + url + ", "
 			+ "user=" + user + ", "
