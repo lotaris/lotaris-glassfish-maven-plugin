@@ -23,7 +23,12 @@ public class JdbcResourcesMacro extends AbstractMacro {
 		if (configuration.getDomain() != null && configuration.getDomain().getJdbcResources() != null) {
 			for (JdbcResource resource : configuration.getDomain().getJdbcResources()) {
 				registerCommand(new MacroCommand(buildCreatJdbcConnectionPool(configuration, resource), "Create JDBC connection pool [" + resource.getJndiName() + "]."));
-				registerCommand(new MacroCommand(buildCreateJdbcResource(configuration, resource), "Create JDBC resource [" + resource.getJndiName() + "]."));
+				if(resource.getTimerPool()!= null && resource.getTimerPool()) {
+					registerCommand(new MacroCommand(buildSetTimerResourceConnectionPool(configuration, resource), "Update jdbc/__TimerPool resource with connection pool [" + resource.getJndiName() + "]."));
+				}
+				else {
+					registerCommand(new MacroCommand(buildCreateJdbcResource(configuration, resource), "Create JDBC resource [" + resource.getJndiName() + "]."));
+				}
 			}
 		}
 	}
