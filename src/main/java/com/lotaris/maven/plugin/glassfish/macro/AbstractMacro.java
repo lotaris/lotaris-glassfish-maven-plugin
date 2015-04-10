@@ -53,7 +53,9 @@ public abstract class AbstractMacro {
 	 * @param macroCommand The macro command to register
 	 */
 	protected void registerCommand(IMacroCommand macroCommand) {
-		commands.add(macroCommand);
+		if (macroCommand != null) {
+			commands.add(macroCommand);
+		}
 	}
 	
 	/**

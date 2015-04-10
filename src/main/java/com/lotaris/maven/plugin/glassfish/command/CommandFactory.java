@@ -430,6 +430,7 @@ public class CommandFactory {
 	 * Build the set command dedicated to set JMS Host attributes
 	 * 
 	 * @param configuration The configuration to enrich the command
+	 * @param jmsHost The JMS host
 	 * @param property The property
 	 * @return The command
 	 */
@@ -448,9 +449,14 @@ public class CommandFactory {
 	 * @return The command
 	 */
 	public static CommandBuilder buildSetLoggingAttributesCommand(Configuration configuration) {
-		return create(SET_LOG_ATTRIBUTES, configuration).
-			addArgument(buildPropertyWithoutNameArgument(configuration.getDomain().getLoggingAttributes())).
-			setFriendlyErrorMessage("Unable to set one or more logging attributes to the domain.");
+		if (configuration.getDomain().getLoggingAttributes() != null && !configuration.getDomain().getLoggingAttributes().isEmpty()) {
+			return create(SET_LOG_ATTRIBUTES, configuration).
+				addArgument(buildPropertyWithoutNameArgument(configuration.getDomain().getLoggingAttributes())).
+				setFriendlyErrorMessage("Unable to set one or more logging attributes to the domain.");
+		}
+		else {
+			return null;
+		}
 	}
 		
 	/**
