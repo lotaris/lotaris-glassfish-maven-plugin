@@ -48,6 +48,24 @@
 
 * Java 6+
 
+## Known issues
+
+1. If you are using glassfish 3.x with this plugin, you should not use the config:
+
+```xml
+...
+	<deployConfig>
+		...
+		<type>ear</type>
+		...
+	</deployConfig>
+...
+```
+
+Only one type is recognized by `asadmin` in glassfish 3.x. Therefore, the type is guessed from the packaging itself during the deployment.
+
+See: http://docs.oracle.com/cd/E18930_01/html/821-2433/deploy-1.html#SJSASEEREFMANdeploy-1
+
 ## Contributing
 
 * [Fork](https://help.github.com/articles/fork-a-repo)
