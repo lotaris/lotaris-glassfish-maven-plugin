@@ -478,7 +478,7 @@ public class CommandFactory {
 		return create(UNDEPLOY, configuration).
 			addArgument(buildBooleanArgument(DEP_DROP_TABLES, configuration.getUndeployConfiguration().getDropTables())).
 			addArgument(buildBooleanArgument(DEP_CASCADE, configuration.getUndeployConfiguration().getCascade())).
-			addArgument(buildStringArgument(DEP_NAME, configuration.getUndeployConfiguration().getName())).
+			addArgument(buildStringArgument(DEP_FILE, configuration.getUndeployConfiguration().getName())).
 			setFriendlyErrorMessage("Unable to undeploy the component.");
 	}
 	
