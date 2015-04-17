@@ -19,14 +19,14 @@ public class UndedeployMacro extends AbstractMacro {
 		super(configuration);
 
 		// Check if the domain does not exist
-		if (!configuration.getDomain().exists()) {
+		if (configuration.getDomain().exists()) {
 			// Check if the domain is not started
 			if (isLocalDomain() && !configuration.getDomain().isStarted()) {
 				registerCommand(new MacroMacroCommand(new StartDomainMacro(configuration), "Starting domain."));
 			}
-		
+			
+			registerCommand(new MacroCommand(buildUndeployCommand(configuration), "Undeploying application + [" + configuration.getUndeployConfiguration().getName() + "]."));	
 		}
 		
-		registerCommand(new MacroCommand(buildUndeployCommand(configuration), "Undeploying application + [" + configuration.getUndeployConfiguration().getName() + "]."));
 	}
 }
