@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.2 - April 17, 2015
+
+* Fixed undeploy command.
+
 ## v1.2.1 - April 10, 2015
 
 * Fixed loggingAttributes configuration which is mandatory even if there is no configuration. Now, it is possible to not set this domain configuration.

@@ -10,7 +10,7 @@
 <plugin>
 	<groupId>com.lotaris.maven.plugins</groupId>
 	<artifactId>lotaris-glassfish-maven-plugin</artifactId>
-	<version>1.2.1</version>
+	<version>1.2.2</version>
 	<executions>
 		<execution>
 			<id>glassfish</id>
