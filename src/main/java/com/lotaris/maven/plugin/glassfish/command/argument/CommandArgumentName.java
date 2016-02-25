@@ -457,7 +457,27 @@ public enum CommandArgumentName implements IArgumentName {
 	/**
 	 * Argument for the set command
 	 */
-	SET_ATTRIBUTE(null);
+	SET_ATTRIBUTE(null),
+	
+	/**
+	 * Name of the resource adapter
+	 */
+	RANAME("raname"),
+	
+	/**
+	 * The connection definition
+	 */
+	CONNECTION_DEFINITION("connectiondefinition"),
+	
+	/**
+	 * Ping during creation
+	 */
+	PING("ping"),
+	
+	/**
+	 * If connections are checked before use
+	 */
+	IS_CONNECT_VALIDATE_REQ("isconnectvalidatereq");
 	
 	/**
 	 * Argument name

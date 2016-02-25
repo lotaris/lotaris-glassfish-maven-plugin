@@ -129,6 +129,12 @@ public class Domain {
 	private Set<ConnectionFactory> connectionFactories;
 	
 	/**
+	 * Define a set of connector connection pool to create
+	 */
+	@Parameter
+	private Set<ConnectorConnectionPool> connectorConnectionPools;
+	
+	/**
 	 * A list of JMS resources to create (resources + physical destinations)
 	 */
 	@Parameter
@@ -214,6 +220,18 @@ public class Domain {
 
 	public Set<JdbcResource> getJdbcResources() {
 		return jdbcResources;
+	}
+	
+	public Set<ConnectorConnectionPool> getConnectorConnectionPools() {
+		return connectorConnectionPools;
+	}
+
+	public void setConnectorConnectionPools(Set<ConnectorConnectionPool> connectorConnectionPools) {
+		this.connectorConnectionPools = connectorConnectionPools;
+	}
+	
+	public boolean hasConnectorConnectionPools() {
+		return connectorConnectionPools != null && !connectorConnectionPools.isEmpty();
 	}
 	
 	/**

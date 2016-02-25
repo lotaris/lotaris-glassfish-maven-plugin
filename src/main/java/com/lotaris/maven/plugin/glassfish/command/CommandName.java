@@ -89,7 +89,12 @@ public enum CommandName {
 	/**
 	 * Undeploy an application
 	 */
-	UNDEPLOY("undeploy");
+	UNDEPLOY("undeploy"),
+	
+	/**
+	 * Create a connector connection pool
+	 */
+	CREATE_CONNECTOR_CONNECTION_POOL("create-connector-connection-pool");
 	
 	/**
 	 * Command name used in the command line

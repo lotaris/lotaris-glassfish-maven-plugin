@@ -4,11 +4,13 @@ import com.lotaris.maven.plugin.glassfish.macro.AbstractMacro;
 import com.lotaris.maven.plugin.glassfish.macro.CreateDomainMacro;
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
 import com.lotaris.maven.plugin.glassfish.model.ConnectionFactory;
+import com.lotaris.maven.plugin.glassfish.model.DeployConfiguration;
 import com.lotaris.maven.plugin.glassfish.model.JdbcResource;
 import com.lotaris.maven.plugin.glassfish.model.Property;
 import java.lang.reflect.Field;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 /**
  * Create a new domain in a local or remote Glassfish instance
@@ -17,6 +19,10 @@ import org.apache.maven.plugins.annotations.Mojo;
  */
 @Mojo(name = "create-domain", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class CreateDomainGlassfishMojo extends GlassfishMojo {
+	
+	@Parameter(required = false)
+	private DeployConfiguration deployConfig;
+	
 	@Override
 	protected AbstractMacro getMacro() {
 		return new CreateDomainMacro(configuration);
@@ -24,7 +30,7 @@ public class CreateDomainGlassfishMojo extends GlassfishMojo {
 	
 	@Override
 	protected Configuration buildConfiguration() {
-		Configuration config = new Configuration(getLog(), glassfish, domain);
+		Configuration config = new Configuration(getLog(), glassfish, domain, deployConfig);
 		
 		if (domain.getConnectionFactories() != null) {
 			// Ensure that the configuration of JMS Connection factories are well configured

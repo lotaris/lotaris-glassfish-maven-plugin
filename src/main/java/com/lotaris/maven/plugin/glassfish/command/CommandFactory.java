@@ -2,6 +2,7 @@ package com.lotaris.maven.plugin.glassfish.command;
 
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
 import com.lotaris.maven.plugin.glassfish.model.ConnectionFactory;
+import com.lotaris.maven.plugin.glassfish.model.ConnectorConnectionPool;
 
 import com.lotaris.maven.plugin.glassfish.model.JmsResource;
 import com.lotaris.maven.plugin.glassfish.model.Property;
@@ -11,6 +12,7 @@ import java.util.Set;
 import static com.lotaris.maven.plugin.glassfish.command.CommandName.*;
 import static com.lotaris.maven.plugin.glassfish.command.argument.CommandArgumentFactory.*;
 import static com.lotaris.maven.plugin.glassfish.command.argument.CommandArgumentName.*;
+
 import com.lotaris.maven.plugin.glassfish.model.DeployConfiguration;
 import com.lotaris.maven.plugin.glassfish.model.JdbcResource;
 import com.lotaris.maven.plugin.glassfish.model.JmsHost;
@@ -498,6 +500,16 @@ public class CommandFactory {
 			addArgument(buildBooleanArgument(DEP_CASCADE, configuration.getUndeployConfiguration().getCascade())).
 			addArgument(buildStringArgument(DEP_FILE, configuration.getUndeployConfiguration().getName())).
 			setFriendlyErrorMessage("Unable to undeploy the component.");
+	}
+	
+	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorConnectionPool connectorConnectionPool) {
+		return create(CREATE_CONNECTOR_CONNECTION_POOL, configuration).
+			addArgument(buildStringArgument(RANAME, connectorConnectionPool.getRaname())).
+			addArgument(buildStringArgument(CONNECTION_DEFINITION, connectorConnectionPool.getConnectionDefinition().getClazz())).
+			addArgument(buildBooleanArgument(PING, connectorConnectionPool.getPing())).
+			addArgument(buildBooleanArgument(IS_CONNECT_VALIDATE_REQ, connectorConnectionPool.getIsConnectValidateReq())).
+			addArgument(buildStringArgument(JNDI_NAME, connectorConnectionPool.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector connection pool.");		
 	}
 	
 	/**

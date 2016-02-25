@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.lotaris.maven.plugin.glassfish.model;
 
 import java.io.File;
@@ -88,7 +84,7 @@ public class Glassfish {
 	 */
 	@Parameter
 	private Set<JmsHost> jmsHosts;
-	
+		
 	/**
 	 * Represent information to configure the JMS service
 	 */
@@ -154,7 +150,7 @@ public class Glassfish {
 	public Set<JmsHost> getJmsHosts() {
 		return jmsHosts;
 	}
-
+	
 	public JmsService getJmsService() {
 		return jmsService;
 	}
