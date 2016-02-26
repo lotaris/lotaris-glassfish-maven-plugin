@@ -20,8 +20,7 @@ public class ConnectorConnectionPoolsMacro extends AbstractMacro {
 	public ConnectorConnectionPoolsMacro(Configuration configuration) {
 		super(configuration);
 
-		
-		// Configure the JMS Hosts if there are some
+		// Configure the Conector Connection pool if there are some
 		if (configuration.getDomain().hasConnectorConnectionPools()) {
 			
 			for (ConnectorConnectionPool connectionPool : configuration.getDomain().getConnectorConnectionPools()) {

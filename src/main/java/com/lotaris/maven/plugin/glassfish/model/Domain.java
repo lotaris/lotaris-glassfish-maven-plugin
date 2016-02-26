@@ -146,6 +146,12 @@ public class Domain {
 	@Parameter
 	private Set<JdbcResource> jdbcResources;
 	
+	/**
+	 * A list of Resource Adapter to deploy on the domain
+	 */
+	@Parameter
+	private Set<ResourceAdapter> resourceAdapters;
+	
 	public String getName() {
 		return name;
 	}
@@ -232,6 +238,18 @@ public class Domain {
 	
 	public boolean hasConnectorConnectionPools() {
 		return connectorConnectionPools != null && !connectorConnectionPools.isEmpty();
+	}
+
+	public Set<ResourceAdapter> getResourceAdapters() {
+		return resourceAdapters;
+	}
+
+	public void setResourceAdapters(Set<ResourceAdapter> resourceAdapters) {
+		this.resourceAdapters = resourceAdapters;
+	}
+	
+	public boolean hasResourceAdapters() {
+		return resourceAdapters != null && !resourceAdapters.isEmpty();
 	}
 	
 	/**

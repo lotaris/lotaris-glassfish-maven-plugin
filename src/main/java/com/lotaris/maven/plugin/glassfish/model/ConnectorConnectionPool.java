@@ -1,5 +1,6 @@
 package com.lotaris.maven.plugin.glassfish.model;
 
+import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
@@ -37,6 +38,9 @@ public class ConnectorConnectionPool {
 	 */
 	@Parameter(required = false, defaultValue = "true")
 	private Boolean isConnectValidateReq;
+	
+	@Parameter
+	private Set<Property> properties;
 
 	public String getJndiName() {
 		return jndiName;
@@ -76,6 +80,14 @@ public class ConnectorConnectionPool {
 
 	public void setIsConnectValidateReq(Boolean isConnectValidateReq) {
 		this.isConnectValidateReq = isConnectValidateReq;
+	}
+
+	public Set<Property> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(Set<Property> properties) {
+		this.properties = properties;
 	}
 
 	@Override
