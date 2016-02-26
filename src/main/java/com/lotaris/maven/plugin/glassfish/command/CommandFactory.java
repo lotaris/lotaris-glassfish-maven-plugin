@@ -1,5 +1,6 @@
 package com.lotaris.maven.plugin.glassfish.command;
 
+import com.lotaris.maven.plugin.glassfish.model.AdminObject;
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
 import com.lotaris.maven.plugin.glassfish.model.ConnectionFactory;
 import com.lotaris.maven.plugin.glassfish.model.ConnectorConnectionPool;
@@ -543,6 +544,22 @@ public class CommandFactory {
 			addArgument(buildStringArgument(CONNECTOR_RESOURCE_CONNECTION_POOL_NAME, connectorResource.getPoolName())).
 			addArgument(buildPropertyArgument(connectorResource.getProperties())).
 			addArgument(buildStringArgument(JNDI_NAME, connectorResource.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector resource.");		
+	}
+	
+	/**
+	 * Build a create-admin-object command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param adminObject The admin object
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateAdminObjectCommand(Configuration configuration, AdminObject adminObject) {
+		return create(CREATE_ADMIN_OBJECT, configuration).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, adminObject.getRaname())).
+			addArgument(buildStringArgument(RESOURCE_TYPE, adminObject.getRestype())).
+			addArgument(buildPropertyArgument(adminObject.getProperties())).
+			addArgument(buildStringArgument(JNDI_NAME, adminObject.getJndiName())).
 			setFriendlyErrorMessage("Unable to create the connector resource.");		
 	}
 	

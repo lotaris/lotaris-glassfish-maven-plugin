@@ -50,6 +50,7 @@ public class CreateDomainMacro extends AbstractMacro {
 		registerCommand(new MacroMacroCommand(new ResourceAdaptersMacro(configuration), "Managing deployment of Resource Adapter"));
 		registerCommand(new MacroMacroCommand(new ConnectorConnectionPoolsMacro(configuration), "Creating Connectors Connection Pools."));
 		registerCommand(new MacroMacroCommand(new ConnectorResourceMacro(configuration), "Creating Connectors Resources."));
+		registerCommand(new MacroMacroCommand(new AdminObjectsMacro(configuration), "Creating Admin Object."));
 		registerCommand(new MacroCommand(buildStopDomainCommand(configuration), "Stopping domain."));
 	}
 }

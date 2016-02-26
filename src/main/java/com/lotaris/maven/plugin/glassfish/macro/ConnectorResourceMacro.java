@@ -25,7 +25,7 @@ public class ConnectorResourceMacro extends AbstractMacro {
 			
 			for (ConnectorResource connectorResource : configuration.getDomain().getConnectorResources()) {
 				// Create and register the command
-				registerCommand(new MacroCommand(buildCreateConnectorConnectionPoolCommand(configuration, connectorResource), "Create the Connector resourc [" + connectorResource.getJndiName()+ "]."));
+				registerCommand(new MacroCommand(buildCreateConnectorConnectionPoolCommand(configuration, connectorResource), "Create the Connector resource [" + connectorResource.getJndiName()+ "]."));
 			}
 		}
 		

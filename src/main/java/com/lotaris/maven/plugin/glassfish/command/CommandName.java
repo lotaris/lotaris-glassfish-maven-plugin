@@ -99,7 +99,12 @@ public enum CommandName {
 	/**
 	 * Create a connector resource
 	 */
-	CREATE_CONNECTOR_RESOURCE("create-connector-resource");
+	CREATE_CONNECTOR_RESOURCE("create-connector-resource"),
+	
+	/**
+	 * Create an admin object
+	 */
+	CREATE_ADMIN_OBJECT("create-admin-object");
 	
 	/**
 	 * Command name used in the command line

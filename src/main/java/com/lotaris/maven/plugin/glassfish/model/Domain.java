@@ -158,6 +158,12 @@ public class Domain {
 	@Parameter
 	private Set<ResourceAdapter> resourceAdapters;
 	
+	/**
+	 * A list of admin object to create
+	 */
+	@Parameter
+	private Set<AdminObject> adminObjects;
+	
 	public String getName() {
 		return name;
 	}
@@ -269,6 +275,18 @@ public class Domain {
 	public boolean hasResourceAdapters() {
 		return resourceAdapters != null && !resourceAdapters.isEmpty();
 	}
+
+	public Set<AdminObject> getAdminObjects() {
+		return adminObjects;
+	}
+
+	public void setAdminObjects(Set<AdminObject> adminObjects) {
+		this.adminObjects = adminObjects;
+	}
+	
+	public boolean hasAdminObjects() {
+		return adminObjects != null && !adminObjects.isEmpty();
+	}	
 	
 	/**
 	 * @return True if the domain exists (if the directory of the domain exists)
