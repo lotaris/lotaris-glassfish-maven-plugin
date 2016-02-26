@@ -7,7 +7,7 @@ import static com.lotaris.maven.plugin.glassfish.command.CommandFactory.*;
 
 
 /**
- * The JMS Resource macro manage the creation of the different connector connection pool
+ * The Connector Connection Pool macro manage the creation of the different connector connection pool
  * 
  * @author Valentin Delaye <valentin.delaye@novaccess.ch>
  */

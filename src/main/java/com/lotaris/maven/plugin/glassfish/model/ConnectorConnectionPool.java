@@ -4,7 +4,8 @@ import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- *
+ * Represents a connector connection pool and configuration required its creation.
+ * 
  * @author Valentin Delaye <valentin.delaye@novaccess.ch>
  */
 public class ConnectorConnectionPool {
@@ -25,7 +26,7 @@ public class ConnectorConnectionPool {
 	 * The name of the connection definition
 	 */
 	@Parameter(required = true)
-	private ConnectionFactory.Type connectionDefinition;
+	private String connectionDefinition;
 	
 	/**
 	 * Ping during creation of the connection pool
@@ -58,11 +59,11 @@ public class ConnectorConnectionPool {
 		this.raname = raname;
 	}
 
-	public ConnectionFactory.Type getConnectionDefinition() {
+	public String getConnectionDefinition() {
 		return connectionDefinition;
 	}
 
-	public void setConnectionDefinition(ConnectionFactory.Type connectionDefinition) {
+	public void setConnectionDefinition(String connectionDefinition) {
 		this.connectionDefinition = connectionDefinition;
 	}
 

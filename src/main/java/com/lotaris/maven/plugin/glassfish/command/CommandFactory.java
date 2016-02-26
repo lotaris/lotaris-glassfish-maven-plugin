@@ -3,6 +3,7 @@ package com.lotaris.maven.plugin.glassfish.command;
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
 import com.lotaris.maven.plugin.glassfish.model.ConnectionFactory;
 import com.lotaris.maven.plugin.glassfish.model.ConnectorConnectionPool;
+import com.lotaris.maven.plugin.glassfish.model.ConnectorResource;
 
 import com.lotaris.maven.plugin.glassfish.model.JmsResource;
 import com.lotaris.maven.plugin.glassfish.model.Property;
@@ -521,13 +522,28 @@ public class CommandFactory {
 	 */
 	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorConnectionPool connectorConnectionPool) {
 		return create(CREATE_CONNECTOR_CONNECTION_POOL, configuration).
-			addArgument(buildStringArgument(RANAME, connectorConnectionPool.getRaname())).
-			addArgument(buildStringArgument(CONNECTION_DEFINITION, connectorConnectionPool.getConnectionDefinition().getClazz())).
-			addArgument(buildBooleanArgument(PING, connectorConnectionPool.getPing())).
-			addArgument(buildBooleanArgument(IS_CONNECT_VALIDATE_REQ, connectorConnectionPool.getIsConnectValidateReq())).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, connectorConnectionPool.getRaname())).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_CONNECTION_DEFINITION, connectorConnectionPool.getConnectionDefinition())).
+			addArgument(buildBooleanArgument(CONNECTOR_CONNECTION_POOL_PING, connectorConnectionPool.getPing())).
+			addArgument(buildBooleanArgument(CONNECTOR_CONNECTION_POOL_IS_CONNECT_VALIDATE_REQ, connectorConnectionPool.getIsConnectValidateReq())).
 			addArgument(buildPropertyArgument(connectorConnectionPool.getProperties())).
 			addArgument(buildStringArgument(JNDI_NAME, connectorConnectionPool.getJndiName())).
 			setFriendlyErrorMessage("Unable to create the connector connection pool.");		
+	}
+	
+	/**
+	 * Build a create-connector-resource command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param connectorConnectionPool The connector resource
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorResource connectorResource) {
+		return create(CREATE_CONNECTOR_RESOURCE, configuration).
+			addArgument(buildStringArgument(CONNECTOR_RESOURCE_CONNECTION_POOL_NAME, connectorResource.getPoolName())).
+			addArgument(buildPropertyArgument(connectorResource.getProperties())).
+			addArgument(buildStringArgument(JNDI_NAME, connectorResource.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector resource.");		
 	}
 	
 	/**

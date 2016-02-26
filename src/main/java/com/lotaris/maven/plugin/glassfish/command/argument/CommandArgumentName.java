@@ -462,22 +462,27 @@ public enum CommandArgumentName implements IArgumentName {
 	/**
 	 * Name of the resource adapter
 	 */
-	RANAME("raname"),
+	CONNECTOR_CONNECTION_POOL_RANAME("raname"),
 	
 	/**
 	 * The connection definition
 	 */
-	CONNECTION_DEFINITION("connectiondefinition"),
+	CONNECTOR_CONNECTION_POOL_CONNECTION_DEFINITION("connectiondefinition"),
 	
 	/**
 	 * Ping during creation
 	 */
-	PING("ping"),
+	CONNECTOR_CONNECTION_POOL_PING("ping"),
 	
 	/**
 	 * If connections are checked before use
 	 */
-	IS_CONNECT_VALIDATE_REQ("isconnectvalidatereq");
+	CONNECTOR_CONNECTION_POOL_IS_CONNECT_VALIDATE_REQ("isconnectvalidatereq"),
+	
+	/**
+	 * The connector resource connection pool name
+	 */
+	CONNECTOR_RESOURCE_CONNECTION_POOL_NAME("poolName");
 	
 	/**
 	 * Argument name

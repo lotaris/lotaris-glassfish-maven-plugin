@@ -94,7 +94,12 @@ public enum CommandName {
 	/**
 	 * Create a connector connection pool
 	 */
-	CREATE_CONNECTOR_CONNECTION_POOL("create-connector-connection-pool");
+	CREATE_CONNECTOR_CONNECTION_POOL("create-connector-connection-pool"),
+	
+	/**
+	 * Create a connector resource
+	 */
+	CREATE_CONNECTOR_RESOURCE("create-connector-resource");
 	
 	/**
 	 * Command name used in the command line

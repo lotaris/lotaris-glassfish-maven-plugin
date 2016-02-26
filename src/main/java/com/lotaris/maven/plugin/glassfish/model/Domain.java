@@ -135,6 +135,12 @@ public class Domain {
 	private Set<ConnectorConnectionPool> connectorConnectionPools;
 	
 	/**
+	 * Define a set of connector resource to create
+	 */
+	@Parameter
+	private Set<ConnectorResource> connectorResources;
+	
+	/**
 	 * A list of JMS resources to create (resources + physical destinations)
 	 */
 	@Parameter
@@ -239,6 +245,18 @@ public class Domain {
 	public boolean hasConnectorConnectionPools() {
 		return connectorConnectionPools != null && !connectorConnectionPools.isEmpty();
 	}
+
+	public Set<ConnectorResource> getConnectorResources() {
+		return connectorResources;
+	}
+
+	public void setConnectorResources(Set<ConnectorResource> connectorResources) {
+		this.connectorResources = connectorResources;
+	}
+	
+	public boolean hasConnectorResources() {
+		return connectorResources != null && !connectorResources.isEmpty();
+	}	
 
 	public Set<ResourceAdapter> getResourceAdapters() {
 		return resourceAdapters;
