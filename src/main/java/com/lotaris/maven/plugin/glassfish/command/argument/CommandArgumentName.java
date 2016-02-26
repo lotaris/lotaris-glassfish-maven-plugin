@@ -482,7 +482,12 @@ public enum CommandArgumentName implements IArgumentName {
 	/**
 	 * The connector resource connection pool name
 	 */
-	CONNECTOR_RESOURCE_CONNECTION_POOL_NAME("poolName");
+	CONNECTOR_RESOURCE_CONNECTION_POOL_NAME("poolName"),
+	
+	/**
+	 * The resource adapter (RA) name
+	 */
+	RESOURCE_ADAPTER_NAME(null);
 	
 	/**
 	 * Argument name

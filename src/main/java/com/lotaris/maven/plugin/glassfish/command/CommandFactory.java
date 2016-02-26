@@ -19,6 +19,7 @@ import com.lotaris.maven.plugin.glassfish.model.DeployConfiguration;
 import com.lotaris.maven.plugin.glassfish.model.JdbcResource;
 import com.lotaris.maven.plugin.glassfish.model.JmsHost;
 import com.lotaris.maven.plugin.glassfish.model.RedeployConfiguration;
+import com.lotaris.maven.plugin.glassfish.model.ResourceAdapter;
 
 /**
  * The command factory create the ASADMIN commands
@@ -530,6 +531,20 @@ public class CommandFactory {
 			addArgument(buildPropertyArgument(connectorConnectionPool.getProperties())).
 			addArgument(buildStringArgument(JNDI_NAME, connectorConnectionPool.getJndiName())).
 			setFriendlyErrorMessage("Unable to create the connector connection pool.");		
+	}	
+	
+	/**
+	 * Build a create-resource-adapter-config command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param resourceAdapter  The resource adapter to configure
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateAdapterConfigCommand(Configuration configuration, ResourceAdapter resourceAdapter) {
+		return create(CREATE_RESOURCE_ADAPTER_CONFIG, configuration).
+			addArgument(buildPropertyArgument(resourceAdapter.getProperties())).
+			addArgument(buildStringArgument(RESOURCE_ADAPTER_NAME, resourceAdapter.getDeployConfig().getName())).
+			setFriendlyErrorMessage("Unable to configure the resource adapter.");		
 	}
 	
 	/**

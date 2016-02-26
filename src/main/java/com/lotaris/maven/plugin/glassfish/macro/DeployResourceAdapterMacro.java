@@ -20,5 +20,10 @@ public class DeployResourceAdapterMacro extends AbstractMacro {
 	public DeployResourceAdapterMacro(Configuration configuration, ResourceAdapter resourceAdapter) {
 		super(configuration);
 		registerCommand(new MacroCommand(buildDeployCommand(configuration, resourceAdapter.getDeployConfig()), "Deploying resource adapter [" + resourceAdapter.getDeployConfig().getName() + "]."));
+		
+		// Configure if properties are set
+		if(resourceAdapter.hasProperties()) {
+			registerCommand(new MacroCommand(buildCreateAdapterConfigCommand(configuration, resourceAdapter), "Create configuration for resource adapter [" + resourceAdapter.getDeployConfig().getName() + "]."));
+		}	
 	}
 }

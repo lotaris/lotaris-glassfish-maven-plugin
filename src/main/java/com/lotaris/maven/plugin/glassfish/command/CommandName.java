@@ -92,6 +92,11 @@ public enum CommandName {
 	UNDEPLOY("undeploy"),
 	
 	/**
+	 * Create a resource adapter config
+	 */
+	CREATE_RESOURCE_ADAPTER_CONFIG("create-resource-adapter-config"),
+	
+	/**
 	 * Create a connector connection pool
 	 */
 	CREATE_CONNECTOR_CONNECTION_POOL("create-connector-connection-pool"),
