@@ -65,7 +65,16 @@ public class AdminObject {
 
 	@Override
 	public String toString() {
-		return "jndiName=" + jndiName + ", raname=" + raname + ", restype=" + restype + '}';
+		StringBuilder builder = new StringBuilder();
+		if(properties != null) {
+			for (Property p : properties) {
+				builder.append(p).append(", ");
+			}		
+		}
+		return 
+			"jndiName=" + jndiName + ", " +
+			"raname=" + raname + "," +
+			"restype=" + restype + "," +
+			"properties=" + builder.toString();
 	}
-	
 }

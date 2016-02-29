@@ -93,11 +93,12 @@ public class ConnectorConnectionPool {
 
 	@Override
 	public String toString() {
-		return "jndiName=" + jndiName +
-			", raname=" + raname +
-			", connectionDefinition=" + connectionDefinition +
-			", ping=" + ping +
-			", isConnectValidateReq=" + isConnectValidateReq + '}';
+		return 
+			"jndiName=" + jndiName + ", " +
+			"raname=" + raname + ", " +
+			"connectionDefinition=" + connectionDefinition +
+			"ping=" + ping + ", " +
+			"isConnectValidateReq=" + isConnectValidateReq;
 	}
 	
 }

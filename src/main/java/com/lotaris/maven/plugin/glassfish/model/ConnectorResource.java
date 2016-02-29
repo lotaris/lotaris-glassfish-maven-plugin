@@ -51,7 +51,16 @@ public class ConnectorResource {
 
 	@Override
 	public String toString() {
-		return "jndiName=" + jndiName + ", poolName=" + poolName + '}';
+		StringBuilder builder = new StringBuilder();
+		if(properties != null) {
+			for (Property p : properties) {
+				builder.append(p).append(", ");
+			}		
+		}
+		return 
+			"jndiName=" + jndiName + ", " +
+			"poolName=" + poolName  + ", " +
+			"properties=" + builder.toString();
 	}
 	
 }

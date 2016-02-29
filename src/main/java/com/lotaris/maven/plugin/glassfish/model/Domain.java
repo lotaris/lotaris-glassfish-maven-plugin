@@ -327,6 +327,12 @@ public class Domain {
 
 	@Override
 	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		if(properties != null) {
+			for (Property p : properties) {
+				builder.append(p).append(", ");
+			}		
+		}
 		return 
 			"createJvmOptions=" + createJvmOptions + ", " +
 			"adminPort=" + adminPort + ", " + 
@@ -346,7 +352,7 @@ public class Domain {
 			"jmxPort=" + jmxPort + ", " + 
 			"loggingAttributes=" + loggingAttributes + ", " +
 			"name=" + name + ", " + 
-			"properties=" + properties + ", " +
-			"reuse=" + reuse;
+			"reuse=" + reuse + ", " +
+			"properties=" + builder.toString();
 	}
 }
