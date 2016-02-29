@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3.0 - February 26, 2016
+
+* Possibility to deploy resource adapters (RA) when creating domain
+* Support for 4 new commands when creating domain (create-resource-adapter-config, create-connector-connection-pool, create-connector-resource, create-admin-object)
+
 ## v1.2.2 - April 17, 2015
 
 * Fixed undeploy command.

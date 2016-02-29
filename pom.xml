@@ -7,7 +7,7 @@
 	<groupId>com.lotaris.maven.plugins</groupId>
 	<artifactId>lotaris-glassfish-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<version>1.2.2</version>
+	<version>1.3.0</version>
 	
 	<name>Lotaris Glassfish Maven Plugin</name>
 	<description>Glassfish Asadmin maven plugin with full arguments supported through XML pom configuration.</description>
@@ -26,6 +26,11 @@
 			<name>Laurent Prevost</name>
 			<email>laurent.prevost@lotaris.com</email>
 			<organization>https://github.com/lotaris</organization>
+		</developer>
+		<developer>
+			<name>Valentin Delaye</name>
+			<email>valentin.delaye@novaccess.ch</email>
+			<organization>http://www.novaccess.ch</organization>
 		</developer>
 	</developers>
 

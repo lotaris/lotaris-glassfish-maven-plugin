@@ -129,6 +129,18 @@ public class Domain {
 	private Set<ConnectionFactory> connectionFactories;
 	
 	/**
+	 * Define a set of connector connection pool to create
+	 */
+	@Parameter
+	private Set<ConnectorConnectionPool> connectorConnectionPools;
+	
+	/**
+	 * Define a set of connector resource to create
+	 */
+	@Parameter
+	private Set<ConnectorResource> connectorResources;
+	
+	/**
 	 * A list of JMS resources to create (resources + physical destinations)
 	 */
 	@Parameter
@@ -139,6 +151,18 @@ public class Domain {
 	 */
 	@Parameter
 	private Set<JdbcResource> jdbcResources;
+	
+	/**
+	 * A list of Resource Adapter to deploy on the domain
+	 */
+	@Parameter
+	private Set<ResourceAdapter> resourceAdapters;
+	
+	/**
+	 * A list of admin object to create
+	 */
+	@Parameter
+	private Set<AdminObject> adminObjects;
 	
 	public String getName() {
 		return name;
@@ -216,6 +240,54 @@ public class Domain {
 		return jdbcResources;
 	}
 	
+	public Set<ConnectorConnectionPool> getConnectorConnectionPools() {
+		return connectorConnectionPools;
+	}
+
+	public void setConnectorConnectionPools(Set<ConnectorConnectionPool> connectorConnectionPools) {
+		this.connectorConnectionPools = connectorConnectionPools;
+	}
+	
+	public boolean hasConnectorConnectionPools() {
+		return connectorConnectionPools != null && !connectorConnectionPools.isEmpty();
+	}
+
+	public Set<ConnectorResource> getConnectorResources() {
+		return connectorResources;
+	}
+
+	public void setConnectorResources(Set<ConnectorResource> connectorResources) {
+		this.connectorResources = connectorResources;
+	}
+	
+	public boolean hasConnectorResources() {
+		return connectorResources != null && !connectorResources.isEmpty();
+	}	
+
+	public Set<ResourceAdapter> getResourceAdapters() {
+		return resourceAdapters;
+	}
+
+	public void setResourceAdapters(Set<ResourceAdapter> resourceAdapters) {
+		this.resourceAdapters = resourceAdapters;
+	}
+	
+	public boolean hasResourceAdapters() {
+		return resourceAdapters != null && !resourceAdapters.isEmpty();
+	}
+
+	public Set<AdminObject> getAdminObjects() {
+		return adminObjects;
+	}
+
+	public void setAdminObjects(Set<AdminObject> adminObjects) {
+		this.adminObjects = adminObjects;
+	}
+	
+	public boolean hasAdminObjects() {
+		return adminObjects != null && !adminObjects.isEmpty();
+	}	
+	
 	/**
 	 * @return True if the domain exists (if the directory of the domain exists)
 	 */
@@ -255,6 +327,14 @@ public class Domain {
 
 	@Override
 	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		String props = null;
+		if(properties != null) {
+			for (Property p : properties) {
+				builder.append(p).append(", ");
+			}
+			props = builder.toString().replaceAll(", $", "");
+		}
 		return 
 			"createJvmOptions=" + createJvmOptions + ", " +
 			"adminPort=" + adminPort + ", " + 
@@ -274,7 +354,7 @@ public class Domain {
 			"jmxPort=" + jmxPort + ", " + 
 			"loggingAttributes=" + loggingAttributes + ", " +
 			"name=" + name + ", " + 
-			"properties=" + properties + ", " +
-			"reuse=" + reuse;
+			"reuse=" + reuse + ", " +
+			"properties=" + props;
 	}
 }

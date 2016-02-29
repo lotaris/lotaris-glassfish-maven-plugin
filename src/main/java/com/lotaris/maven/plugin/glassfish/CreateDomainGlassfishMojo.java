@@ -17,6 +17,7 @@ import org.apache.maven.plugins.annotations.Mojo;
  */
 @Mojo(name = "create-domain", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class CreateDomainGlassfishMojo extends GlassfishMojo {
+	
 	@Override
 	protected AbstractMacro getMacro() {
 		return new CreateDomainMacro(configuration);

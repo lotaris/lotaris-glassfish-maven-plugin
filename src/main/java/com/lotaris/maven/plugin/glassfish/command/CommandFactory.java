@@ -1,7 +1,10 @@
 package com.lotaris.maven.plugin.glassfish.command;
 
+import com.lotaris.maven.plugin.glassfish.model.AdminObject;
 import com.lotaris.maven.plugin.glassfish.model.Configuration;
 import com.lotaris.maven.plugin.glassfish.model.ConnectionFactory;
+import com.lotaris.maven.plugin.glassfish.model.ConnectorConnectionPool;
+import com.lotaris.maven.plugin.glassfish.model.ConnectorResource;
 
 import com.lotaris.maven.plugin.glassfish.model.JmsResource;
 import com.lotaris.maven.plugin.glassfish.model.Property;
@@ -11,10 +14,12 @@ import java.util.Set;
 import static com.lotaris.maven.plugin.glassfish.command.CommandName.*;
 import static com.lotaris.maven.plugin.glassfish.command.argument.CommandArgumentFactory.*;
 import static com.lotaris.maven.plugin.glassfish.command.argument.CommandArgumentName.*;
+
 import com.lotaris.maven.plugin.glassfish.model.DeployConfiguration;
 import com.lotaris.maven.plugin.glassfish.model.JdbcResource;
 import com.lotaris.maven.plugin.glassfish.model.JmsHost;
 import com.lotaris.maven.plugin.glassfish.model.RedeployConfiguration;
+import com.lotaris.maven.plugin.glassfish.model.ResourceAdapter;
 
 /**
  * The command factory create the ASADMIN commands
@@ -322,42 +327,52 @@ public class CommandFactory {
 	}
 	
 	/**
+	 * Build the deploy command with a custom deploy configuration
+	 * 
+	 * @param configuration The configuration to get the options for the deployment
+	 * @param deployConfig The deployment configuration
+	 * @return The command
+	 */
+	public static CommandBuilder buildDeployCommand(Configuration configuration, DeployConfiguration deployConfig) {
+
+		return create(DEPLOY, configuration).
+			addArgument(buildBooleanArgument(DEP_FORCE, deployConfig.getForce())).
+			addArgument(buildStringArgument(DEP_VIRTUAL_SERVERS, deployConfig.getVirtualServers())).
+			addArgument(buildStringArgument(DEP_CONTEXT_ROOT, deployConfig.getContextRoot())).
+			addArgument(buildBooleanArgument(DEP_PRE_COMPILE_JSP, deployConfig.getPreCompileJsp())).
+			addArgument(buildBooleanArgument(DEP_VERIFY, deployConfig.getVerify())).
+			addArgument(buildStringArgument(DEP_NAME, deployConfig.getName())).
+			addArgument(buildBooleanArgument(DEP_UPLOAD, deployConfig.getUpload())).
+			addArgument(buildStringArgument(DEP_RETRIEVE, deployConfig.getRetrieve())).
+			addArgument(buildStringArgument(DEP_DB_VENDOR_NAME, deployConfig.getDbVendorName())).
+			addArgument(buildBooleanArgument(DEP_CREATE_TABLES, deployConfig.getCreateTables())).
+			addArgument(buildBooleanArgument(DEP_DROP_AND_CREATE_TABLES, deployConfig.getDropAndCreateTables())).
+			addArgument(buildBooleanArgument(DEP_UNIQUE_TABLE_NAMES, deployConfig.getUniqueTableNames())).
+			addArgument(buildStringArgument(DEP_DEPLOYMENT_PLAN, deployConfig.getDeploymentPlan())).
+			addArgument(buildStringArgument(DEP_ALTDD, deployConfig.getAltdd())).
+			addArgument(buildStringArgument(DEP_RUNTIME_ATLDD, deployConfig.getRuntimeAltdd())).
+			addArgument(buildIntegerArgument(DEP_DEPLOYMENT_ORDER, deployConfig.getDeploymentOrder())).
+			addArgument(buildBooleanArgument(DEP_ENABLED, deployConfig.getEnabled())).
+			addArgument(buildBooleanArgument(DEP_GENERATE_RMI_STUBS, deployConfig.getGenerateRmiStubs())).
+			addArgument(buildBooleanArgument(DEP_AVAILABILITY_ENABLED, deployConfig.getAvailabilityEnabled())).
+			addArgument(buildBooleanArgument(DEP_ASYNCHRONOUS_REPLICATION, deployConfig.getAsynReplication())).
+			addArgument(buildBooleanArgument(DEP_LOAD_BALANCING_ENABLED, deployConfig.getLenabled())).
+			addArgument(buildBooleanArgument(DEP_KEEP_STATE, deployConfig.getKeepState())).
+			addArgument(buildStringArgument(DEP_LIBRARIES, deployConfig.getLibraries())).
+			addArgument(buildStringArgument(DEP_TYPE, deployConfig.getType())).
+			addArgument(buildDeploymentPropertyArgument(deployConfig.getProperties())).
+			addArgument(buildStringArgument(DEP_FILE, deployConfig.getFile())).
+			setFriendlyErrorMessage("Unable to deploy the component.");		
+	}
+	
+	/**
 	 * Build the deploy command
 	 * 
 	 * @param configuration The configuration to get the options for the deployment
 	 * @return The command
 	 */
 	public static CommandBuilder buildDeployCommand(Configuration configuration) {
-		DeployConfiguration depConfig = configuration.getDeployConfiguration();
-		
-		return create(DEPLOY, configuration).
-			addArgument(buildBooleanArgument(DEP_FORCE, depConfig.getForce())).
-			addArgument(buildStringArgument(DEP_VIRTUAL_SERVERS, depConfig.getVirtualServers())).
-			addArgument(buildStringArgument(DEP_CONTEXT_ROOT, depConfig.getContextRoot())).
-			addArgument(buildBooleanArgument(DEP_PRE_COMPILE_JSP, depConfig.getPreCompileJsp())).
-			addArgument(buildBooleanArgument(DEP_VERIFY, depConfig.getVerify())).
-			addArgument(buildStringArgument(DEP_NAME, depConfig.getName())).
-			addArgument(buildBooleanArgument(DEP_UPLOAD, depConfig.getUpload())).
-			addArgument(buildStringArgument(DEP_RETRIEVE, depConfig.getRetrieve())).
-			addArgument(buildStringArgument(DEP_DB_VENDOR_NAME, depConfig.getDbVendorName())).
-			addArgument(buildBooleanArgument(DEP_CREATE_TABLES, depConfig.getCreateTables())).
-			addArgument(buildBooleanArgument(DEP_DROP_AND_CREATE_TABLES, depConfig.getDropAndCreateTables())).
-			addArgument(buildBooleanArgument(DEP_UNIQUE_TABLE_NAMES, depConfig.getUniqueTableNames())).
-			addArgument(buildStringArgument(DEP_DEPLOYMENT_PLAN, depConfig.getDeploymentPlan())).
-			addArgument(buildStringArgument(DEP_ALTDD, depConfig.getAltdd())).
-			addArgument(buildStringArgument(DEP_RUNTIME_ATLDD, depConfig.getRuntimeAltdd())).
-			addArgument(buildIntegerArgument(DEP_DEPLOYMENT_ORDER, depConfig.getDeploymentOrder())).
-			addArgument(buildBooleanArgument(DEP_ENABLED, depConfig.getEnabled())).
-			addArgument(buildBooleanArgument(DEP_GENERATE_RMI_STUBS, depConfig.getGenerateRmiStubs())).
-			addArgument(buildBooleanArgument(DEP_AVAILABILITY_ENABLED, depConfig.getAvailabilityEnabled())).
-			addArgument(buildBooleanArgument(DEP_ASYNCHRONOUS_REPLICATION, depConfig.getAsynReplication())).
-			addArgument(buildBooleanArgument(DEP_LOAD_BALANCING_ENABLED, depConfig.getLenabled())).
-			addArgument(buildBooleanArgument(DEP_KEEP_STATE, depConfig.getKeepState())).
-			addArgument(buildStringArgument(DEP_LIBRARIES, depConfig.getLibraries())).
-			addArgument(buildStringArgument(DEP_TYPE, depConfig.getType())).
-			addArgument(buildDeploymentPropertyArgument(depConfig.getProperties())).
-			addArgument(buildStringArgument(DEP_FILE, depConfig.getFile())).
-			setFriendlyErrorMessage("Unable to deploy the component.");
+		return buildDeployCommand(configuration, configuration.getDeployConfiguration());
 	}
 	
 	/**
@@ -498,6 +513,69 @@ public class CommandFactory {
 			addArgument(buildBooleanArgument(DEP_CASCADE, configuration.getUndeployConfiguration().getCascade())).
 			addArgument(buildStringArgument(DEP_FILE, configuration.getUndeployConfiguration().getName())).
 			setFriendlyErrorMessage("Unable to undeploy the component.");
+	}
+	
+	/**
+	 * Build a create-connector-connection-pool command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param connectorConnectionPool The connector connection pool
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorConnectionPool connectorConnectionPool) {
+		return create(CREATE_CONNECTOR_CONNECTION_POOL, configuration).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, connectorConnectionPool.getRaname())).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_CONNECTION_DEFINITION, connectorConnectionPool.getConnectionDefinition())).
+			addArgument(buildBooleanArgument(CONNECTOR_CONNECTION_POOL_PING, connectorConnectionPool.getPing())).
+			addArgument(buildBooleanArgument(CONNECTOR_CONNECTION_POOL_IS_CONNECT_VALIDATE_REQ, connectorConnectionPool.getIsConnectValidateReq())).
+			addArgument(buildPropertyArgument(connectorConnectionPool.getProperties())).
+			addArgument(buildStringArgument(JNDI_NAME, connectorConnectionPool.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector connection pool.");		
+	}	
+	
+	/**
+	 * Build a create-resource-adapter-config command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param resourceAdapter  The resource adapter to configure
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateAdapterConfigCommand(Configuration configuration, ResourceAdapter resourceAdapter) {
+		return create(CREATE_RESOURCE_ADAPTER_CONFIG, configuration).
+			addArgument(buildPropertyArgument(resourceAdapter.getProperties())).
+			addArgument(buildStringArgument(RESOURCE_ADAPTER_NAME, resourceAdapter.getDeployConfig().getName())).
+			setFriendlyErrorMessage("Unable to configure the resource adapter.");		
+	}
+	
+	/**
+	 * Build a create-connector-resource command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param connectorConnectionPool The connector resource
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorResource connectorResource) {
+		return create(CREATE_CONNECTOR_RESOURCE, configuration).
+			addArgument(buildStringArgument(CONNECTOR_RESOURCE_CONNECTION_POOL_NAME, connectorResource.getPoolName())).
+			addArgument(buildPropertyArgument(connectorResource.getProperties())).
+			addArgument(buildStringArgument(JNDI_NAME, connectorResource.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector resource.");		
+	}
+	
+	/**
+	 * Build a create-admin-object command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @param adminObject The admin object
+	 * @return The command
+	 */
+	public static CommandBuilder buildCreateAdminObjectCommand(Configuration configuration, AdminObject adminObject) {
+		return create(CREATE_ADMIN_OBJECT, configuration).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, adminObject.getRaname())).
+			addArgument(buildStringArgument(RESOURCE_TYPE, adminObject.getRestype())).
+			addArgument(buildPropertyArgument(adminObject.getProperties())).
+			addArgument(buildStringArgument(JNDI_NAME, adminObject.getJndiName())).
+			setFriendlyErrorMessage("Unable to create the connector resource.");		
 	}
 	
 	/**

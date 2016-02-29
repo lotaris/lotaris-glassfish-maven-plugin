@@ -6,6 +6,22 @@ package com.lotaris.maven.plugin.glassfish.command;
  * @author Laurent Prevost, laurent.prevost@lotaris.com
  */
 public enum CommandName {
+	
+	/**
+	 * Create an admin object
+	 */
+	CREATE_ADMIN_OBJECT("create-admin-object"),
+	
+	/**
+	 * Create a connector connection pool
+	 */
+	CREATE_CONNECTOR_CONNECTION_POOL("create-connector-connection-pool"),
+	
+	/**
+	 * Create a connector resource
+	 */
+	CREATE_CONNECTOR_RESOURCE("create-connector-resource"),
+
 	/**
 	 * Creation of a new domain
 	 */
@@ -15,7 +31,7 @@ public enum CommandName {
 	 * Create a JDBC connection pool
 	 */
 	CREATE_JDBC_CONNECTION_POOL("create-jdbc-connection-pool"),
-	
+		
 	/**
 	 * Create the JMS host
 	 */
@@ -40,6 +56,11 @@ public enum CommandName {
 	 * Creation of a new JVM option
 	 */
 	CREATE_JVM_OPTIONS("create-jvm-options"),
+	
+	/**
+	 * Create a resource adapter config
+	 */
+	CREATE_RESOURCE_ADAPTER_CONFIG("create-resource-adapter-config"),
 	
 	/**
 	 * Delete an existing domain

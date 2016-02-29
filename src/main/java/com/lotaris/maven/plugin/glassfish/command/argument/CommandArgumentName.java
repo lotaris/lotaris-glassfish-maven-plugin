@@ -12,6 +12,31 @@ public enum CommandArgumentName implements IArgumentName {
 	ADMIN_PORT("adminport"),
 	
 	/**
+	 * The connection definition
+	 */
+	CONNECTOR_CONNECTION_POOL_CONNECTION_DEFINITION("connectiondefinition"),
+	
+	/**
+	 * If connections are checked before use
+	 */
+	CONNECTOR_CONNECTION_POOL_IS_CONNECT_VALIDATE_REQ("isconnectvalidatereq"),
+	
+	/**
+	 * Ping during creation
+	 */
+	CONNECTOR_CONNECTION_POOL_PING("ping"),
+	
+	/**
+	 * Name of the resource adapter
+	 */
+	CONNECTOR_CONNECTION_POOL_RANAME("raname"),
+	
+	/**
+	 * The connector resource connection pool name
+	 */
+	CONNECTOR_RESOURCE_CONNECTION_POOL_NAME("poolName"),
+	
+	/**
 	 * Description text
 	 */
 	DESCRIPTION("description"),
@@ -450,6 +475,11 @@ public enum CommandArgumentName implements IArgumentName {
 	PROPERTY("property"),
 	
 	/**
+	 * The resource adapter (RA) name
+	 */
+	RESOURCE_ADAPTER_NAME(null),
+	
+	/**
 	 * Resource type for JMS/JDBC
 	 */
 	RESOURCE_TYPE("restype"),
@@ -458,6 +488,7 @@ public enum CommandArgumentName implements IArgumentName {
 	 * Argument for the set command
 	 */
 	SET_ATTRIBUTE(null);
+	
 	
 	/**
 	 * Argument name
