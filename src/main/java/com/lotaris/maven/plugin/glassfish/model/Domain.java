@@ -328,10 +328,12 @@ public class Domain {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		String props = null;
 		if(properties != null) {
 			for (Property p : properties) {
 				builder.append(p).append(", ");
-			}		
+			}
+			props = builder.toString().replaceAll(", $", "");
 		}
 		return 
 			"createJvmOptions=" + createJvmOptions + ", " +
@@ -353,6 +355,6 @@ public class Domain {
 			"loggingAttributes=" + loggingAttributes + ", " +
 			"name=" + name + ", " + 
 			"reuse=" + reuse + ", " +
-			"properties=" + builder.toString();
+			"properties=" + props;
 	}
 }

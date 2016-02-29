@@ -52,15 +52,17 @@ public class ConnectorResource {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		String props = null;
 		if(properties != null) {
 			for (Property p : properties) {
 				builder.append(p).append(", ");
-			}		
+			}
+			props = builder.toString().replaceAll(", $", "");
 		}
 		return 
 			"jndiName=" + jndiName + ", " +
 			"poolName=" + poolName  + ", " +
-			"properties=" + builder.toString();
+			"properties=" + props;
 	}
 	
 }

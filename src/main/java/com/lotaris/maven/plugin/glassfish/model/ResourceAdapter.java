@@ -42,4 +42,19 @@ public class ResourceAdapter {
 		this.deployConfig = deployConfig;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		String props = null;
+		if(properties != null) {
+			for (Property p : properties) {
+				builder.append(p).append(", ");
+			}
+			props = builder.toString().replaceAll(", $", "");
+		}
+		return 
+			"deployConfig=" + deployConfig + ", " +
+			"properties=" + props;
+	}
+	
 }
